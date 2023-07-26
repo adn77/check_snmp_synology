@@ -199,16 +199,8 @@ else
         exit 2
     fi 
 
-    nbDisk=$(echo "$tmpRequest" | grep $OID_diskID | wc -l)
-    nbRAID=$(echo "$tmpRequest" | grep $OID_RAIDName | wc -l)
-    if [ "$?" != "0" ] ; then
-        echo "CRITICAL - Problem with SNMP request, check user/password/host"
-        exit 2
-    fi
-
-
     if [ "$checkType" = "disk" ] ; then
-        nbDisk=$(echo "$tmpRequestDisk" | wc -l)
+        nbDisk=$(echo "$tmpRequest" | grep $OID_diskID | wc -l)
         for i in `seq 1 $nbDisk`;
         do
             if [ $i -lt 5 ] ; then
@@ -226,7 +218,7 @@ else
     fi
 
     if [ "$checkType" = "raid" ] ; then
-        nbRAID=$(echo "$tmpRequestRaid" | wc -l)
+        nbRAID=$(echo "$tmpRequest" | grep $OID_RAIDName | wc -l)
         for i in `seq 1 $nbRAID`;
         do
             OID_RAID="$OID_RAID $OID_RAIDName.$(($i-1)) $OID_RAIDStatus.$(($i-1))"
