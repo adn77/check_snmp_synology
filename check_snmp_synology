@@ -286,8 +286,8 @@ else
     fi
 
     if [ "$checkType" = "temperature" ] ; then
-        #Check system temperature
-        if [ "$temperature" -gt "$warningTemperature" ] ; then
+        #Check system temperature (no such OID on virtual DSMs)
+        if [[ "$temperature" =~ ^[0-9.]+$ ]] && [ "$temperature" -gt "$warningTemperature" ] ; then
             if [ "$temperature" -gt "$criticalTemperature" ] ; then
                     temperature="$temperature (CRITICAL)"
                     healthCriticalStatus=1
