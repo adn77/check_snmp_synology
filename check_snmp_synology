@@ -428,7 +428,7 @@ else
                           echo "$healthString System Status:             $systemStatus" ;;
         "version")        echo "DSM Version: $DSMVersion $healthString" ;
                           echo "DSM update:              $DSMUpgradeAvailable" ;;
-        "temperature")    echo "$healthString Temperature:                " ;;
+        "temperature")    echo "$healthString Temperature:               $temperature" ;;
         "power")          echo "$healthString Power Status:              $powerStatus" ;;
         "fan")            echo "$healthString System Fan Status:         $systemFanStatus" ;
                           echo "CPU Fan Status:          $CPUFanStatus" ;;
